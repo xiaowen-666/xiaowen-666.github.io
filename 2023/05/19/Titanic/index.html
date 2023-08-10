@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		
+<title>Titanic - Machine Learning from Disaster-blog</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="shortcut icon" type="image/x-icon" href="/image/user.png">
+
+<link rel="stylesheet" href="/css/index.css">
+
+
+<meta name="keywords" content="hexo主题,hexo扁平化主题,Quiet主题">
+<meta name="description" content="描述">
+
+
+<script src="/js/jquery.min.js"></script>
+
+
+<script src="/js/index.js"></script>
+
+
+<script src="/js/fancybox.umd.js"></script>
+
+
+<script src="/js/fancybox-images.js"></script>
+
+
+<script src="/js/gitalk.min.js"></script>
+
+
+<script src="/js/hljs.min.js"></script>
+ 
+<script>hljs.highlightAll();</script>
+
+	<meta name="generator" content="Hexo 6.3.0"></head>
+
+	<body>
+		
+	<div class="header">
+		<div class="header-top" id="header-top">
+			<div class="h-left">
+				<a href="/">
+					<img src="/image/user.png" alt="Quiet">
+				</a>
+			</div>
+			<div class="h-right">
+				<ul>
+					
+						
+								<li>
+									<a href="/">
+										HOME
+									</a>
+									<span class="dot"></span>
+								</li>
+								
+									
+						
+								<li>
+									<a href="/archives">
+										ARCHIVE
+									</a>
+									<span class="dot"></span>
+								</li>
+								
+									
+				</ul>
+			</div>
+			<div class="h-right-close">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+					<path fill="none" d="M0 0h24v24H0z" />
+					<path d="M3 4h18v2H3V4zm0 7h18v2H3v-2zm0 7h18v2H3v-2z" fill="rgba(68,68,68,1)" />
+				</svg>
+			</div>
+		</div>
+	</div>
+	<div class="sidebar">
+    <div class="topo">
+        <h2>小w</h2>
+    </div>
+    <ul>
+        
+        <li>
+            <a href="/">HOME</a>
+        </li>
+        
+        <li>
+            <a href="/archives">ARCHIVE</a>
+        </li>
+        
+    </ul>
+    <div class="my_foot">
+        
+        <a target="_blank" rel="noopener" href="https://github.com/79E/hexo-theme-quiet">
+            <img src="https://cdn.jsdelivr.net/gh/duogongneng/MyBlogImg/imggithub.png" alt="Quiet主题">
+        </a>
+        
+    </div>
+</div>
+<div class='shelter'>
+</div>
+<style>
+    .shelter{
+        background-color: #333;
+        opacity:0.5;
+        cursor: pointer;
+        display: none; 
+        position: fixed;
+        left: 0;
+        top: 0; 
+        right: 0;
+        bottom: 0;
+        z-index: 1998;
+    }
+    .sidebar {
+        width: 66%;
+        height: 100%;
+        position: fixed;
+        top: 0;
+        right: -100%;
+        bottom: 0;
+        background: #fff;
+        z-index: 1999;
+        text-align: center;
+        box-shadow: -6px 0 20px rgba(98, 94, 94, .815);
+    }
+
+    .topo {
+        width: 100%;
+        height: 200px;
+        background: url(https://api.ixiaowai.cn/gqapi/gqapi.php) no-repeat;
+        background-size: 100% 100%;
+        position: relative;
+        display: flex;
+        align-items: flex-end
+    }
+
+    .topo h2 {
+        color: #fff;
+        z-index: 1;
+        position: relative;
+        margin: 0 0 10px 10px;
+        font-size: 1.2em;
+        box-sizing: border-box
+    }
+
+    .topo:before {
+        content: '';
+        background-image: url(/image/pattern.png);
+        background-repeat: repeat;
+        height: 100%;
+        left: 0;
+        position: absolute;
+        top: 0;
+        width: 100%;
+        z-index: 1
+    }
+
+    .sidebar ul {
+        width: 100%;
+        margin-top: 50px
+    }
+
+    .sidebar ul li {
+        height: 50px;
+        list-style: none;
+        font-size: 1.2em;
+        text-align: right;
+        margin-right: 10px
+    }
+
+    .sidebar ul li a {
+        display: grid;
+        color: #5d606a;
+        text-overflow: ellipsis;
+        width: 100%;
+        text-decoration: none
+    }
+
+    .my_foot {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+        position: absolute;
+        bottom: 0
+    }
+
+    .my_foot a {
+        text-decoration: none;
+        margin-right: 10px;
+        display: inline-block
+    }
+
+    .my_foot a img {
+        width: 30px;
+        height: 30px
+    }
+</style>
+
+<script>
+    $( function () {
+	$( '.h-right-close>svg' )
+		.click( function () {
+			$( '.sidebar' )
+				.animate( {
+					right: "0"
+				}, 500 );
+			$( '.shelter' )
+				.fadeIn( "slow" )
+		} );
+	$( '.shelter' )
+		.click( function ( e ) {
+			$( '.sidebar' )
+				.animate( {
+					right: "-100%"
+				}, 500 );
+			$( '.shelter' )
+				.fadeOut( "slow" )
+		} )
+} )
+
+</script>
+
+<div class="about">
+    <div class="about-header-background">
+        <div class="about-header-background-content">
+            <img src="image/touxiang.png" alt="Q">
+            <h1> 
+                <span>Titanic - Machine Learning from Disaster.</span>
+            </h1>
+        </div>
+    </div>
+    
+    <div class="about-content" id="content" >
+        <div id="article" class="about-content-info">
+            <h1 id="泰坦尼克号灾难预测"><a href="#泰坦尼克号灾难预测" class="headerlink" title="泰坦尼克号灾难预测"></a>泰坦尼克号灾难预测</h1><ul>
+<li>使用Deep Learning 创建一个模型，来预测哪些乘客在泰坦尼克号沉船中可以幸存下来。</li>
+</ul>
+<br>
+
+<p><img src="/image/Titanic/background.jfif" alt="Titanic"></p>
+<br>
+<br>
+
+<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><ul>
+<li>The sinking of the <strong>Titanic</strong> is one of the most infamous shipwrecks in history.<br>On April 15, 1912, during her maiden voyage, the widely considered “unsinkable” RMS Titanic sank after colliding with an iceberg.   Unfortunately, there weren’t enough lifeboats for everyone onboard, resulting in the death of 1502 out of 2224 passengers and crew.While there was some element of luck involved in surviving, it seems some groups of people were more likely to survive than others.</li>
+</ul>
+<hr>
+<h2 id="挑战"><a href="#挑战" class="headerlink" title="挑战"></a>挑战</h2><ul>
+<li>了解了相关信息及背景后，决定采用<em>PyTorch</em>深度学习框架，通过使用乘客数据（即姓名，年龄，性别，社会经济阶层等）构建<strong>Titanic</strong>的二分类预测模型。</li>
+</ul>
+<h5 id="数据预处理"><a href="#数据预处理" class="headerlink" title="数据预处理"></a>数据预处理</h5><pre><code class="python">import pandas as pd
+import numpy as np
+
+def data_preprocessed():
+    datas = pd.read_csv(&#39;data/train.csv&#39;, delimiter=&#39;,&#39;)
+    data = pd.get_dummies(datas[[&#39;Pclass&#39;, &#39;Sex&#39;, &#39;SibSp&#39;, &#39;Parch&#39;, &#39;Survived&#39;]])
+    survive = data.pop(data.columns[3])
+    data[&#39;Survived&#39;] = survive
+
+    with open(&#39;train.csv&#39;, &#39;w&#39;)as f:
+        np.savetxt(f, data, delimiter=&#39;,&#39;)
+
+def testdata_preprocessed():
+    datas = pd.read_csv(&#39;data/test.csv&#39;, delimiter=&#39;,&#39;)
+    data = pd.get_dummies(datas[[&#39;Pclass&#39;, &#39;Sex&#39;, &#39;SibSp&#39;, &#39;Parch&#39;]])
+
+    with open(&#39;test.csv&#39;, &#39;w&#39;)as f:
+        np.savetxt(f, data, delimiter=&#39;,&#39;)
+
+
+if __name__ == &#39;__main__&#39;:
+    testdata_preprocessed()
+    data_preprocessed()
+
+&#39;&#39;&#39;
+采用pandas和numpy对数据集进行预处理，将其分别保存在对应的csv文件中。
+&#39;&#39;&#39;
+</code></pre>
+<hr>
+<ul>
+<li>对数据进行预处理后，开始编写主程序构建预测模型。</li>
+</ul>
+<h5 id="导入相应模块"><a href="#导入相应模块" class="headerlink" title="导入相应模块"></a>导入相应模块</h5><pre><code class="python">import numpy as np
+import pandas as pd
+import torch
+import matplotlib.pyplot as plt
+</code></pre>
+<h5 id="编写神经网络模型"><a href="#编写神经网络模型" class="headerlink" title="编写神经网络模型"></a>编写神经网络模型</h5><pre><code class="python">class Net(torch.nn.Module):
+    def __init__(self, n_feature, n_hidden, n_hidden2, n_hidden3, n_output):
+        super().__init__()
+        self.feature = torch.nn.Linear(n_feature, n_hidden)
+        self.layer = torch.nn.Linear(n_hidden, n_hidden2)
+        self.layer2 = torch.nn.Linear(n_hidden2, n_hidden3)
+        self.predict = torch.nn.Linear(n_hidden3, n_output)
+    
+    def forward(self, x):
+        x = torch.sigmoid(self.feature(x))
+        x = torch.sigmoid(self.layer(x))
+        x = torch.sigmoid(self.layer2(x))
+        x = torch.sigmoid(self.predict(x))
+        return x
+&#39;&#39;&#39;
+构建一层输入层，两层隐含层，一层输出层。全部采用sigmoid激活函数连接层。
+&#39;&#39;&#39;
+</code></pre>
+<h5 id="加载数据集"><a href="#加载数据集" class="headerlink" title="加载数据集"></a>加载数据集</h5><pre><code class="python">def data_handling():
+    data_preprocessed()
+    data = np.loadtxt(&#39;train.csv&#39;, delimiter=&#39;,&#39;, dtype=np.float32)
+    x = torch.from_numpy(data[:, :-1])
+    y = torch.from_numpy(data[:, [-1]])
+
+    test_x = np.loadtxt(&#39;test.csv&#39;, delimiter=&#39;,&#39;, dtype=np.float32)
+    test_x = torch.from_numpy(test_x)
+
+    test_y = pd.read_csv(&#39;data/gender_submission.csv&#39;, delimiter=&#39;,&#39;, index_col=0)
+    test_y = test_y.values
+    return x, y, test_x, test_y
+&#39;&#39;&#39;
+加载预处理的数据集，和验证集。
+&#39;&#39;&#39;
+</code></pre>
+<h5 id="迭代计算"><a href="#迭代计算" class="headerlink" title="迭代计算"></a>迭代计算</h5><pre><code class="python">def main():
+    all_data = data_handling()
+    x = all_data[0]
+    y = all_data[1]
+    test_x = all_data[2]
+    test_y = all_data[3]
+
+    net = Net(5, 330, 300, 215, 1)
+    optimizer = torch.optim.Adam(net.parameters(), lr=0.00015)
+    loss_func = torch.nn.BCELoss()
+    plt.ion()
+    plt.show()
+
+    epochs = 1000
+    for epoch in range(epochs):
+        y_train_hat = net(x)
+        loss_train = loss_func(y_train_hat, y)
+
+        optimizer.zero_grad()
+        loss_train.backward()
+        optimizer.step()
+
+        y_test_hat = net(test_x)
+        if epoch % 5 == 0:
+            plt.cla()
+            spot_1, = plt.plot(test_y, &#39;r*&#39;, lw=2)
+            spot_2, = plt.plot(y_test_hat.data.numpy(), &#39;bo&#39;, lw=2)
+            plt.xlabel(&#39;epoch&#39;)
+            plt.ylabel(&#39;result&#39;)
+            plt.legend((spot_1, spot_2), [&#39;real&#39;, &#39;test&#39;])
+            plt.pause(0.1)
+        if epoch == epochs-1:
+            threshold = 0.5
+            preduction = (y_test_hat &gt;= threshold).int()
+            preduction = preduction.data.numpy()
+            result = np.equal(test_y, preduction)
+            correct_ratio = np.mean(result)
+            print(correct_ratio)
+            with open(&#39;result.csv&#39;, &#39;w&#39;)as f:
+                np.savetxt(f, preduction, delimiter=&#39;,&#39;, fmt=&#39;%d&#39;)
+    plt.ioff()
+    plt.show()
+&#39;&#39;&#39;
+定义输入层单元数即为决策变量数，隐含层各层单元数，输出层单元数为一。采用Adam优化器，设置学习率为0.00015，选择BCELoss二分类损失函数。
+对数据集进行1000次迭代学习。
+&#39;&#39;&#39;
+</code></pre>
+<h5 id="运行程序"><a href="#运行程序" class="headerlink" title="运行程序"></a>运行程序</h5><pre><code class="python">if __name__ == &#39;__main__&#39;:
+    main()
+&#39;&#39;&#39;
+运行主程序
+&#39;&#39;&#39;
+</code></pre>
+<hr>
+<h2 id="预测模型准确率及result数据集"><a href="#预测模型准确率及result数据集" class="headerlink" title="预测模型准确率及result数据集"></a>预测模型准确率及result数据集</h2><ul>
+<li>通过深度学习预测模型得到<strong>幸存者</strong>数据集result.csv并与gender_submission.csv数据集进行预测模型准确性的验证。</li>
+</ul>
+<p><img src="/image/Titanic/result.png" alt="result"><br><img src="/image/Titanic/correct.png" alt="correct"></p>
+<blockquote>
+<p>预测的准确性到了 <strong>97.85%</strong> ，表明模型训练得还不错。{后来提交后也继续训练过多次，最高到达过 <strong>98.80%</strong> 的准确率！}</p>
+</blockquote>
+<hr>
+<h2 id="提交数据"><a href="#提交数据" class="headerlink" title="提交数据"></a>提交数据</h2><ul>
+<li>提交result.csv结果。</li>
+</ul>
+<br>
+
+<p><img src="/image/Titanic/grade.png" alt="grade"></p>
+<blockquote>
+<p>得到了 <strong>77.751</strong> 分数，排名 <strong>4502</strong> 名次。很不错的成绩！😁</p>
+</blockquote>
+
+        </div>
+        <div id=""></div>
+    </div>
+</div>
+
+		
+<div class="footer">
+	<div class="Copyright">
+		©2023 By 小w. 主题：<a
+			style="text-decoration: none;display: contents; color: #898F9F;"
+			target="_blank" rel="noopener" href="https://github.com/79e/hexo-theme-quiet">Quiet</a>
+	</div>
+	<div class="contact">
+		
+		<a target="_blank" rel="noopener" href="https://github.com/79E/hexo-theme-quiet">
+			<img src="https://cdn.jsdelivr.net/gh/duogongneng/MyBlogImg/imggithub.png" alt="Quiet主题">
+		</a>
+		
+	</div>
+</div>
+
+<script src="/js/gotop.js"></script>
+
+
+<style type="text/css">
+    @media screen and (min-width: 600px) {
+        .goTop>span {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            opacity: 0.8;
+            background: rgba(18, 24, 58, 0.06);
+            text-align: center;
+            transition: border .5s;
+            border: 1px solid rgba(18, 24, 58, 0.06);
+
+            -moz-transition: border .5s;
+            /* Firefox 4 */
+            -webkit-transition: border .5s;
+            /* Safari 和 Chrome */
+            -o-transition: border .5s;
+            /* Opera */
+        }
+
+        .goTop>span:hover {
+            border: 1px solid #6680B3;
+        }
+
+
+        .goTop {
+            position: fixed;
+            right: 30px;
+            bottom: 80px;
+        }
+
+        .goTop>span>svg {
+            width: 20px;
+            height: 20px;
+            opacity: 0.7;
+        }
+
+    }
+
+    @media screen and (max-width: 600px) {
+        .goTop {
+            display: none;
+        }
+    }
+</style>
+<div class="goTop" id="js-go_top">
+    <span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+            <g>
+                <path d="M13 12v8h-2v-8H4l8-8 8 8z"></path>
+            </g>
+        </svg>
+    </span>
+</div>
+<script>
+    $( '#js-go_top' )
+	.gotoTop( {
+		offset: 500,
+		speed: 300,
+		animationShow: {
+			'transform': 'translate(0,0)',
+			'transition': 'transform .5s ease-in-out'
+		},
+		animationHide: {
+			'transform': 'translate(100px,0)',
+			'transition': 'transform .5s ease-in-out'
+		}
+	} );
+</script>
+
+
+    <!-- Gitalk -->
+    <script>
+        const data = '{"clientID":"02b3c","clientSecret":"adfc7b4","repo":"gimment","owner":"duneng","admin":"duneng"}'
+        const gitalk = new Gitalk({
+            ...JSON.parse( data),
+            id:location.pathname,
+            distractionFreeMode:false
+        })
+        
+        if(Boolean('false')){
+            gitalk.render('gitalk-container')
+        }
+    </script>
+
+<script>
+	console.log('\n %c Hexo-Quiet 主题 %c https://github.com/79e/hexo-theme-quiet \n', 'color: #fadfa3; background: #030307; padding:5px 0;', 'background: #fadfa3; padding:5px 0;')
+</script>
+	</body>
+</html>
+
