@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		
+<title>关于 Transforms.Compose 的小问题-blog</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="shortcut icon" type="image/x-icon" href="/image/user.png">
+
+<link rel="stylesheet" href="/css/index.css">
+
+
+<meta name="keywords" content="hexo主题,hexo扁平化主题,Quiet主题">
+<meta name="description" content="描述">
+
+
+<script src="/js/jquery.min.js"></script>
+
+
+<script src="/js/index.js"></script>
+
+
+<script src="/js/fancybox.umd.js"></script>
+
+
+<script src="/js/fancybox-images.js"></script>
+
+
+<script src="/js/gitalk.min.js"></script>
+
+
+<script src="/js/hljs.min.js"></script>
+ 
+<script>hljs.highlightAll();</script>
+
+	<meta name="generator" content="Hexo 6.3.0"></head>
+
+	<body>
+		
+	<div class="header">
+		<div class="header-top" id="header-top">
+			<div class="h-left">
+				<a href="/">
+					<img src="/image/user.png" alt="Quiet">
+				</a>
+			</div>
+			<div class="h-right">
+				<ul>
+					
+						
+								<li>
+									<a href="/">
+										HOME
+									</a>
+									<span class="dot"></span>
+								</li>
+								
+									
+						
+								<li>
+									<a href="/archives">
+										ARCHIVE
+									</a>
+									<span class="dot"></span>
+								</li>
+								
+									
+				</ul>
+			</div>
+			<div class="h-right-close">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+					<path fill="none" d="M0 0h24v24H0z" />
+					<path d="M3 4h18v2H3V4zm0 7h18v2H3v-2zm0 7h18v2H3v-2z" fill="rgba(68,68,68,1)" />
+				</svg>
+			</div>
+		</div>
+	</div>
+	<div class="sidebar">
+    <div class="topo">
+        <h2>小w</h2>
+    </div>
+    <ul>
+        
+        <li>
+            <a href="/">HOME</a>
+        </li>
+        
+        <li>
+            <a href="/archives">ARCHIVE</a>
+        </li>
+        
+    </ul>
+    <div class="my_foot">
+        
+        <a target="_blank" rel="noopener" href="https://github.com/79E/hexo-theme-quiet">
+            <img src="https://cdn.jsdelivr.net/gh/duogongneng/MyBlogImg/imggithub.png" alt="Quiet主题">
+        </a>
+        
+    </div>
+</div>
+<div class='shelter'>
+</div>
+<style>
+    .shelter{
+        background-color: #333;
+        opacity:0.5;
+        cursor: pointer;
+        display: none; 
+        position: fixed;
+        left: 0;
+        top: 0; 
+        right: 0;
+        bottom: 0;
+        z-index: 1998;
+    }
+    .sidebar {
+        width: 66%;
+        height: 100%;
+        position: fixed;
+        top: 0;
+        right: -100%;
+        bottom: 0;
+        background: #fff;
+        z-index: 1999;
+        text-align: center;
+        box-shadow: -6px 0 20px rgba(98, 94, 94, .815);
+    }
+
+    .topo {
+        width: 100%;
+        height: 200px;
+        background: url(https://api.ixiaowai.cn/gqapi/gqapi.php) no-repeat;
+        background-size: 100% 100%;
+        position: relative;
+        display: flex;
+        align-items: flex-end
+    }
+
+    .topo h2 {
+        color: #fff;
+        z-index: 1;
+        position: relative;
+        margin: 0 0 10px 10px;
+        font-size: 1.2em;
+        box-sizing: border-box
+    }
+
+    .topo:before {
+        content: '';
+        background-image: url(/image/pattern.png);
+        background-repeat: repeat;
+        height: 100%;
+        left: 0;
+        position: absolute;
+        top: 0;
+        width: 100%;
+        z-index: 1
+    }
+
+    .sidebar ul {
+        width: 100%;
+        margin-top: 50px
+    }
+
+    .sidebar ul li {
+        height: 50px;
+        list-style: none;
+        font-size: 1.2em;
+        text-align: right;
+        margin-right: 10px
+    }
+
+    .sidebar ul li a {
+        display: grid;
+        color: #5d606a;
+        text-overflow: ellipsis;
+        width: 100%;
+        text-decoration: none
+    }
+
+    .my_foot {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+        position: absolute;
+        bottom: 0
+    }
+
+    .my_foot a {
+        text-decoration: none;
+        margin-right: 10px;
+        display: inline-block
+    }
+
+    .my_foot a img {
+        width: 30px;
+        height: 30px
+    }
+</style>
+
+<script>
+    $( function () {
+	$( '.h-right-close>svg' )
+		.click( function () {
+			$( '.sidebar' )
+				.animate( {
+					right: "0"
+				}, 500 );
+			$( '.shelter' )
+				.fadeIn( "slow" )
+		} );
+	$( '.shelter' )
+		.click( function ( e ) {
+			$( '.sidebar' )
+				.animate( {
+					right: "-100%"
+				}, 500 );
+			$( '.shelter' )
+				.fadeOut( "slow" )
+		} )
+} )
+
+</script>
+
+<div class="about">
+    <div class="about-header-background">
+        <div class="about-header-background-content">
+            <img src="image/touxiang.png" alt="Q">
+            <h1> 
+                <span>Transforms.Compose minor problem</span>
+            </h1>
+        </div>
+    </div>
+    
+    <div class="about-content" id="content" >
+        <div id="article" class="about-content-info">
+            <h1 id="🎨关于-Transforms-Compose-的小问题"><a href="#🎨关于-Transforms-Compose-的小问题" class="headerlink" title="🎨关于 Transforms.Compose 的小问题"></a>🎨关于 Transforms.Compose 的小问题</h1><ul>
+<li>今天简单的玩了一下<strong>pytorch</strong>自带的<strong>CIFAR10</strong>数据集构建多分类预测模型，使用<em>torchvision.transforms.Compose</em>时，发现了一个小小的BUG。</li>
+</ul>
+<hr>
+<ul>
+<li>我已经训练好了CIFAR10的预测模型，而我要对模型进行简单的验证。</li>
+</ul>
+<blockquote>
+<p>导入相关模块和已经构建好的神经网络结构模型</p>
+</blockquote>
+<pre><code class="py">import torch
+import torchvision
+from PIL import Image
+
+from nn_model import Net
+</code></pre>
+<blockquote>
+<p>编写主程序代码</p>
+</blockquote>
+<pre><code class="py">image_path = &#39;./image/img.png&#39;
+image = Image.open(image_path)
+
+transform = torchvision.transforms.Compose([torchvision.transforms.ToTensor(),
+                                            torchvision.transforms.Resize((32, 32))])
+image = transform(image)
+image = torch.reshape(image, [1, 3, 32, 32])
+
+model = Net()
+model.load_state_dict(torch.load(&#39;nn_cifar10.pth&#39;, map_location=torch.device(&#39;cuda&#39;)))
+
+with torch.no_grad():
+    output = model(image)
+    print(output.argmax(1))
+
+&#39;&#39;&#39;img.png即为要进行验证模型的图片，nn_cifar10.pth就是已经训练好的预测模型&#39;&#39;&#39;
+</code></pre>
+<ul>
+<li>当我找了一张小狗的图片进行验证时，结果是 <strong>airplane</strong> ，什么！！！飞机？我的天~</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><img src="/image/Transforms/dog.png" alt="dog"></td>
+<td><img src="/image/Transforms/airplane.png" alt="airplane"></td>
+</tr>
+</tbody></table>
+<ul>
+<li>我的第一反应是我的预测模型训练迭代不好造成的，于是我对<strong>CIFAR10</strong>模型训练增长到35次，这次应该没问题了吧。但是这次竟然给我预测成了 <strong>frog</strong>，不应该呀！</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><img src="/image/Transforms/frog.png" alt="frog"></td>
+<td><img src="/image/Transforms/cat.png" alt="cat"></td>
+</tr>
+</tbody></table>
+<ul>
+<li>于是我又找了一张小猫的图片,竟然也是 <strong>frog</strong> ，这么一来说明我验证的全不对了。怎么回事呢？</li>
+</ul>
+<hr>
+<h4 id="🐎去看官方文档，在Compose并没有找到答案，在我捣鼓了半天后，突然发现了一个问题！！！"><a href="#🐎去看官方文档，在Compose并没有找到答案，在我捣鼓了半天后，突然发现了一个问题！！！" class="headerlink" title="🐎去看官方文档，在Compose并没有找到答案，在我捣鼓了半天后，突然发现了一个问题！！！"></a>🐎去看官方文档，在Compose并没有找到答案，在我捣鼓了半天后，突然发现了一个问题！！！</h4><pre><code class="py">transform = torchvision.transforms.Compose([torchvision.transforms.ToTensor(),
+                                            torchvision.transforms.Resize((32, 32))])
+
+&#39;&#39;&#39;将上面的ToTensor与Resize互换位置&#39;&#39;&#39;
+
+transform = torchvision.transforms.Compose([torchvision.transforms.Resize((32, 32)),
+                                            torchvision.transforms.ToTensor()])
+</code></pre>
+<ul>
+<li>当我将ToTensor与Resize两个object互换位置后，发现预测的结果正确了！而且再试了多个不同图片也预测正确了！😵🤔</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><img src="/image/Transforms/cat_yes.png"></td>
+<td><img src="/image/Transforms/dog_yes.png"></td>
+</tr>
+</tbody></table>
+<h4 id="🐟晕，究竟是BUG还是其它，还得慢慢查找原因。"><a href="#🐟晕，究竟是BUG还是其它，还得慢慢查找原因。" class="headerlink" title="🐟晕，究竟是BUG还是其它，还得慢慢查找原因。"></a>🐟晕，究竟是BUG还是其它，还得慢慢查找原因。</h4>
+        </div>
+        <div id=""></div>
+    </div>
+</div>
+
+		
+<div class="footer">
+	<div class="Copyright">
+		©2023 By 小w. 主题：<a
+			style="text-decoration: none;display: contents; color: #898F9F;"
+			target="_blank" rel="noopener" href="https://github.com/79e/hexo-theme-quiet">Quiet</a>
+	</div>
+	<div class="contact">
+		
+		<a target="_blank" rel="noopener" href="https://github.com/79E/hexo-theme-quiet">
+			<img src="https://cdn.jsdelivr.net/gh/duogongneng/MyBlogImg/imggithub.png" alt="Quiet主题">
+		</a>
+		
+	</div>
+</div>
+
+<script src="/js/gotop.js"></script>
+
+
+<style type="text/css">
+    @media screen and (min-width: 600px) {
+        .goTop>span {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            opacity: 0.8;
+            background: rgba(18, 24, 58, 0.06);
+            text-align: center;
+            transition: border .5s;
+            border: 1px solid rgba(18, 24, 58, 0.06);
+
+            -moz-transition: border .5s;
+            /* Firefox 4 */
+            -webkit-transition: border .5s;
+            /* Safari 和 Chrome */
+            -o-transition: border .5s;
+            /* Opera */
+        }
+
+        .goTop>span:hover {
+            border: 1px solid #6680B3;
+        }
+
+
+        .goTop {
+            position: fixed;
+            right: 30px;
+            bottom: 80px;
+        }
+
+        .goTop>span>svg {
+            width: 20px;
+            height: 20px;
+            opacity: 0.7;
+        }
+
+    }
+
+    @media screen and (max-width: 600px) {
+        .goTop {
+            display: none;
+        }
+    }
+</style>
+<div class="goTop" id="js-go_top">
+    <span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+            <g>
+                <path d="M13 12v8h-2v-8H4l8-8 8 8z"></path>
+            </g>
+        </svg>
+    </span>
+</div>
+<script>
+    $( '#js-go_top' )
+	.gotoTop( {
+		offset: 500,
+		speed: 300,
+		animationShow: {
+			'transform': 'translate(0,0)',
+			'transition': 'transform .5s ease-in-out'
+		},
+		animationHide: {
+			'transform': 'translate(100px,0)',
+			'transition': 'transform .5s ease-in-out'
+		}
+	} );
+</script>
+
+
+    <!-- Gitalk -->
+    <script>
+        const data = '{"clientID":"02b3c","clientSecret":"adfc7b4","repo":"gimment","owner":"duneng","admin":"duneng"}'
+        const gitalk = new Gitalk({
+            ...JSON.parse( data),
+            id:location.pathname,
+            distractionFreeMode:false
+        })
+        
+        if(Boolean('false')){
+            gitalk.render('gitalk-container')
+        }
+    </script>
+
+<script>
+	console.log('\n %c Hexo-Quiet 主题 %c https://github.com/79e/hexo-theme-quiet \n', 'color: #fadfa3; background: #030307; padding:5px 0;', 'background: #fadfa3; padding:5px 0;')
+</script>
+	</body>
+</html>
+
