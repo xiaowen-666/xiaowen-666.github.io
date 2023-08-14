@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		
+<title>Docker简介及安装教程-blog</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="shortcut icon" type="image/x-icon" href="/image/user.png">
+
+<link rel="stylesheet" href="/css/index.css">
+
+
+<meta name="keywords" content="hexo主题,hexo扁平化主题,Quiet主题">
+<meta name="description" content="描述">
+
+
+<script src="/js/jquery.min.js"></script>
+
+
+<script src="/js/index.js"></script>
+
+
+<script src="/js/fancybox.umd.js"></script>
+
+
+<script src="/js/fancybox-images.js"></script>
+
+
+<script src="/js/gitalk.min.js"></script>
+
+
+<script src="/js/hljs.min.js"></script>
+ 
+<script>hljs.highlightAll();</script>
+
+	<meta name="generator" content="Hexo 6.3.0"></head>
+
+	<body>
+		
+	<div class="header">
+		<div class="header-top" id="header-top">
+			<div class="h-left">
+				<a href="/">
+					<img src="/image/user.png" alt="Quiet">
+				</a>
+			</div>
+			<div class="h-right">
+				<ul>
+					
+						
+								<li>
+									<a href="/">
+										HOME
+									</a>
+									<span class="dot"></span>
+								</li>
+								
+									
+						
+								<li>
+									<a href="/archives">
+										ARCHIVE
+									</a>
+									<span class="dot"></span>
+								</li>
+								
+									
+				</ul>
+			</div>
+			<div class="h-right-close">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+					<path fill="none" d="M0 0h24v24H0z" />
+					<path d="M3 4h18v2H3V4zm0 7h18v2H3v-2zm0 7h18v2H3v-2z" fill="rgba(68,68,68,1)" />
+				</svg>
+			</div>
+		</div>
+	</div>
+	<div class="sidebar">
+    <div class="topo">
+        <h2>小w</h2>
+    </div>
+    <ul>
+        
+        <li>
+            <a href="/">HOME</a>
+        </li>
+        
+        <li>
+            <a href="/archives">ARCHIVE</a>
+        </li>
+        
+    </ul>
+    <div class="my_foot">
+        
+        <a target="_blank" rel="noopener" href="https://github.com/79E/hexo-theme-quiet">
+            <img src="https://cdn.jsdelivr.net/gh/duogongneng/MyBlogImg/imggithub.png" alt="Quiet主题">
+        </a>
+        
+    </div>
+</div>
+<div class='shelter'>
+</div>
+<style>
+    .shelter{
+        background-color: #333;
+        opacity:0.5;
+        cursor: pointer;
+        display: none; 
+        position: fixed;
+        left: 0;
+        top: 0; 
+        right: 0;
+        bottom: 0;
+        z-index: 1998;
+    }
+    .sidebar {
+        width: 66%;
+        height: 100%;
+        position: fixed;
+        top: 0;
+        right: -100%;
+        bottom: 0;
+        background: #fff;
+        z-index: 1999;
+        text-align: center;
+        box-shadow: -6px 0 20px rgba(98, 94, 94, .815);
+    }
+
+    .topo {
+        width: 100%;
+        height: 200px;
+        background: url(https://api.ixiaowai.cn/gqapi/gqapi.php) no-repeat;
+        background-size: 100% 100%;
+        position: relative;
+        display: flex;
+        align-items: flex-end
+    }
+
+    .topo h2 {
+        color: #fff;
+        z-index: 1;
+        position: relative;
+        margin: 0 0 10px 10px;
+        font-size: 1.2em;
+        box-sizing: border-box
+    }
+
+    .topo:before {
+        content: '';
+        background-image: url(/image/pattern.png);
+        background-repeat: repeat;
+        height: 100%;
+        left: 0;
+        position: absolute;
+        top: 0;
+        width: 100%;
+        z-index: 1
+    }
+
+    .sidebar ul {
+        width: 100%;
+        margin-top: 50px
+    }
+
+    .sidebar ul li {
+        height: 50px;
+        list-style: none;
+        font-size: 1.2em;
+        text-align: right;
+        margin-right: 10px
+    }
+
+    .sidebar ul li a {
+        display: grid;
+        color: #5d606a;
+        text-overflow: ellipsis;
+        width: 100%;
+        text-decoration: none
+    }
+
+    .my_foot {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+        position: absolute;
+        bottom: 0
+    }
+
+    .my_foot a {
+        text-decoration: none;
+        margin-right: 10px;
+        display: inline-block
+    }
+
+    .my_foot a img {
+        width: 30px;
+        height: 30px
+    }
+</style>
+
+<script>
+    $( function () {
+	$( '.h-right-close>svg' )
+		.click( function () {
+			$( '.sidebar' )
+				.animate( {
+					right: "0"
+				}, 500 );
+			$( '.shelter' )
+				.fadeIn( "slow" )
+		} );
+	$( '.shelter' )
+		.click( function ( e ) {
+			$( '.sidebar' )
+				.animate( {
+					right: "-100%"
+				}, 500 );
+			$( '.shelter' )
+				.fadeOut( "slow" )
+		} )
+} )
+
+</script>
+
+<div class="about">
+    <div class="about-header-background">
+        <div class="about-header-background-content">
+            <img src="image/touxiang.png" alt="Q">
+            <h1> 
+                <span>Docker简介及安装教程.</span>
+            </h1>
+        </div>
+    </div>
+    
+    <div class="about-content" id="content" >
+        <div id="article" class="about-content-info">
+            <h2 id="Docker介绍"><a href="#Docker介绍" class="headerlink" title="Docker介绍"></a>Docker介绍</h2><p><img src="/image/Docker/Docker.jpg" alt="Docker"></p>
+<ul>
+<li>Docker 是一个开源的应用容器引擎，基于 <strong>Go</strong> 语言 并遵从Apache2.0 协议开源。Docker 可以让开发者打包他们的应用以及依赖包到一个轻量级、可移植的容器中，然后发布到任何流行的 Linux 机器上，也可以实现虚拟化。<br></li>
+</ul>
+<blockquote>
+<p>Docker 从 17.03 版本之后分为 CE(Community Edition: 社区版)和 EE(Enterprise Edition: 企业版).</p>
+</blockquote>
+<br>
+
+<h2 id="Docker优点"><a href="#Docker优点" class="headerlink" title="Docker优点"></a>Docker优点</h2><ul>
+<li><p>Docker是一个用于开发，交付和运行应用程序的开放平台。</p>
+</li>
+<li><p>Docker使您能够将应用程序与基础架构分开，从而可以快速交付软件。</p>
+</li>
+<li><p>借助 Docker，您可以与管理应用程序相同的方式来管理基础架构。</p>
+</li>
+<li><p>通过利用Docker的方法来快速交付,测试和部署代码，您可以大大减少编写代码和在生产环境中运行代码之间的延迟。</p>
+<p>  Docekr 官网： <a target="_blank" rel="noopener" href="https://www.docker.com/">https://www.docker.com/</a><br>  Github Docker 源码：<a target="_blank" rel="noopener" href="https://github.com/docker/docker-ce">https://github.com/docker/docker-ce</a></p>
+</li>
+</ul>
+<br>
+
+<h2 id="Docker的安装"><a href="#Docker的安装" class="headerlink" title="Docker的安装"></a>Docker的安装</h2><h3 id="更新系统"><a href="#更新系统" class="headerlink" title="更新系统"></a>更新系统</h3><pre><code class="shell">sudo apt update
+sudo apt upgrade
+</code></pre>
+<br>
+
+<h3 id="安装Docker"><a href="#安装Docker" class="headerlink" title="安装Docker"></a>安装Docker</h3><pre><code class="shell">curl -fSL https://get.docker.com -o get-docker.sh
+sudo sh get-docker.sh
+</code></pre>
+<h3 id="添加用户组"><a href="#添加用户组" class="headerlink" title="添加用户组"></a>添加用户组</h3><pre><code class="shell">sudo usermod -aG docker $USER
+</code></pre>
+<h3 id="注销并重新登陆，查看信息"><a href="#注销并重新登陆，查看信息" class="headerlink" title="注销并重新登陆，查看信息"></a>注销并重新登陆，查看信息</h3><pre><code class="shell">docker info
+</code></pre>
+<h3 id="设置镜像站代理"><a href="#设置镜像站代理" class="headerlink" title="设置镜像站代理"></a>设置镜像站代理</h3><p>docker daemon 的配置文件位于 <code>/etc/docker/daemon.json</code></p>
+<pre><code class="json">&#123;
+    &quot;registry-mirrors&quot;: [
+        &quot;https://dockerproxy.com&quot;
+    ]
+&#125;
+</code></pre>
+<h3 id="重启-docker-daemon-服务"><a href="#重启-docker-daemon-服务" class="headerlink" title="重启 docker daemon 服务"></a>重启 docker daemon 服务</h3><pre><code class="shell">sudo systemctl restart docker
+</code></pre>
+<br>
+<br>
+
+<h2 id="Portainer-可视化工具"><a href="#Portainer-可视化工具" class="headerlink" title="Portainer 可视化工具"></a>Portainer 可视化工具</h2><ul>
+<li>Portainer是一款轻量级的图形化管理工具，通过它我们可以轻松管理不同的Docker环境。Portainer部署和使用都非常简单，它提供一个可以运行在任何Docker引擎上的容器组成。</li>
+<li>Portainer提供管理Docker的container、images、volumes、networks等等，它兼容独立的Docker境和swarm集群模式。基本满足中小型单位对Docker容器的管理工作。</li>
+</ul>
+<h2 id="Partainer-安装"><a href="#Partainer-安装" class="headerlink" title="Partainer 安装"></a>Partainer 安装</h2><blockquote>
+<p>社区版</p>
+</blockquote>
+<h3 id="拉取镜像"><a href="#拉取镜像" class="headerlink" title="拉取镜像"></a>拉取镜像</h3><pre><code class="shell">docker pull portainer/portainer-ce
+</code></pre>
+<h3 id="创建存储卷"><a href="#创建存储卷" class="headerlink" title="创建存储卷"></a>创建存储卷</h3><pre><code class="shell">docker volume create portainer_data
+</code></pre>
+<h3 id="运行容器"><a href="#运行容器" class="headerlink" title="运行容器"></a>运行容器</h3><pre><code class="shell">docker run -dt \
+    --name portainer \
+    -p 9000:9000 \
+    -v portainer_data:/data \
+    -v /var/run/docker.sock:/var/run/docker.sock \
+    portainer/portainer-ce:latest
+</code></pre>
+<blockquote>
+<p>企业版</p>
+</blockquote>
+<h3 id="拉取镜像-1"><a href="#拉取镜像-1" class="headerlink" title="拉取镜像"></a>拉取镜像</h3><pre><code class="shell">docker pull portainer/portainer-ee
+</code></pre>
+<h3 id="创建存储卷-1"><a href="#创建存储卷-1" class="headerlink" title="创建存储卷"></a>创建存储卷</h3><pre><code class="shell">docker volume create portainer_data
+</code></pre>
+<h3 id="设置授权码"><a href="#设置授权码" class="headerlink" title="设置授权码"></a>设置授权码</h3><pre><code class="shell">export PORTAINER_LICENSE_KEY=你的授权码
+</code></pre>
+<h3 id="运行容器-1"><a href="#运行容器-1" class="headerlink" title="运行容器"></a>运行容器</h3><pre><code class="shell">docker run -dt \
+    --name portainer \
+    -e PORTAINER_LICENSE_KEY \
+    -p 9000:9000 \
+    -v portainer_data:/data \
+    -v /var/run/docker.sock:/var/run/docker.sock \
+    portainer/portainer-ee:latest
+</code></pre>
+<h3 id="首次使用"><a href="#首次使用" class="headerlink" title="首次使用"></a>首次使用</h3><p>浏览器打开 <a href="">http://localhost:9000</a> 创建用户并登陆。</p>
+<h3 id="确认容器无误，更新容器自启动选项"><a href="#确认容器无误，更新容器自启动选项" class="headerlink" title="确认容器无误，更新容器自启动选项"></a>确认容器无误，更新容器自启动选项</h3><pre><code class="shell">docker update --restart always portainer
+</code></pre>
+
+        </div>
+        <div id=""></div>
+    </div>
+</div>
+
+		
+<div class="footer">
+	<div class="Copyright">
+		©2023 By 小w. 主题：<a
+			style="text-decoration: none;display: contents; color: #898F9F;"
+			target="_blank" rel="noopener" href="https://github.com/79e/hexo-theme-quiet">Quiet</a>
+	</div>
+	<div class="contact">
+		
+		<a target="_blank" rel="noopener" href="https://github.com/79E/hexo-theme-quiet">
+			<img src="https://cdn.jsdelivr.net/gh/duogongneng/MyBlogImg/imggithub.png" alt="Quiet主题">
+		</a>
+		
+	</div>
+</div>
+
+<script src="/js/gotop.js"></script>
+
+
+<style type="text/css">
+    @media screen and (min-width: 600px) {
+        .goTop>span {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            opacity: 0.8;
+            background: rgba(18, 24, 58, 0.06);
+            text-align: center;
+            transition: border .5s;
+            border: 1px solid rgba(18, 24, 58, 0.06);
+
+            -moz-transition: border .5s;
+            /* Firefox 4 */
+            -webkit-transition: border .5s;
+            /* Safari 和 Chrome */
+            -o-transition: border .5s;
+            /* Opera */
+        }
+
+        .goTop>span:hover {
+            border: 1px solid #6680B3;
+        }
+
+
+        .goTop {
+            position: fixed;
+            right: 30px;
+            bottom: 80px;
+        }
+
+        .goTop>span>svg {
+            width: 20px;
+            height: 20px;
+            opacity: 0.7;
+        }
+
+    }
+
+    @media screen and (max-width: 600px) {
+        .goTop {
+            display: none;
+        }
+    }
+</style>
+<div class="goTop" id="js-go_top">
+    <span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+            <g>
+                <path d="M13 12v8h-2v-8H4l8-8 8 8z"></path>
+            </g>
+        </svg>
+    </span>
+</div>
+<script>
+    $( '#js-go_top' )
+	.gotoTop( {
+		offset: 500,
+		speed: 300,
+		animationShow: {
+			'transform': 'translate(0,0)',
+			'transition': 'transform .5s ease-in-out'
+		},
+		animationHide: {
+			'transform': 'translate(100px,0)',
+			'transition': 'transform .5s ease-in-out'
+		}
+	} );
+</script>
+
+
+    <!-- Gitalk -->
+    <script>
+        const data = '{"clientID":"02b3c","clientSecret":"adfc7b4","repo":"gimment","owner":"duneng","admin":"duneng"}'
+        const gitalk = new Gitalk({
+            ...JSON.parse( data),
+            id:location.pathname,
+            distractionFreeMode:false
+        })
+        
+        if(Boolean('false')){
+            gitalk.render('gitalk-container')
+        }
+    </script>
+
+<script>
+	console.log('\n %c Hexo-Quiet 主题 %c https://github.com/79e/hexo-theme-quiet \n', 'color: #fadfa3; background: #030307; padding:5px 0;', 'background: #fadfa3; padding:5px 0;')
+</script>
+	</body>
+</html>
+
