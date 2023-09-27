@@ -2,7 +2,7 @@
 <html>
 	<head>
 		
-<title>小w-blog</title>
+<title>Abaqus2020+VS2015+Fortran2016关联配置-blog</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -49,13 +49,13 @@
 				<ul>
 					
 						
-							<li class="select">
-								<a href="/">
-									HOME
-								</a>
-								<span class="dot"></span>
-							</li>
-							
+								<li>
+									<a href="/">
+										HOME
+									</a>
+									<span class="dot"></span>
+								</li>
+								
 									
 						
 								<li>
@@ -223,123 +223,117 @@
 
 </script>
 
-<div class="home">
-	<div class="header-body-background">
-    <div class="header-body-background-content">
-        <span>
-            <img src="/image/touxiang.png" alt="Quiet">
-        </span>
+<div class="about">
+    <div class="about-header-background">
+        <div class="about-header-background-content">
+            <img src="image/touxiang.png" alt="Q">
+            <h1> 
+                <span>Abaqus2020+VS2015+Fortran2016关联配置及安装教程.</span>
+            </h1>
+        </div>
+    </div>
+    
+    <div class="about-content" id="content" >
+        <div id="article" class="about-content-info">
+            <p><img src="/image/ab_vs_f/Fortran.jpg"><br><br></p>
+<h1 id="安装教程"><a href="#安装教程" class="headerlink" title="安装教程"></a>安装教程</h1><ul>
+<li>因为 <em><strong>Abaqus2020</strong></em> 及 <em><strong>VS2015</strong></em> 在ruanjianguanjia有详细的安装教程这里不再介绍两软件安装教程，需要的可去自行安装，这里主要介绍 <em><strong>Fortran2016</strong></em> 的安装教程（安装包获取在文章最下方）。</li>
+</ul>
+<br>
+<br>
 
-        <h2>你好呀,欢迎来到小w的博客~</h2>
+<ul>
+<li>解压获取到的安装包，找到 <em><strong>setup.exe</strong></em> ,右键<strong>管理员身份运行</strong>，跳转安装界面后点击<strong>Next</strong>(如下图所示)<br><img src="/image/ab_vs_f/f1.png"></li>
+</ul>
+<br>
+
+<ul>
+<li>接着再<strong>Next</strong>，选择<strong>I accept….</strong> 然后 <strong>Next</strong>(如下图)<br><img src="/image/ab_vs_f/f2.png"></li>
+</ul>
+<br>
+
+<ul>
+<li>接着选择 <strong>Choose al..</strong> 点击<strong>Next</strong>,这时点击<strong>browse</strong>选择 Fortran安装包文件夹下的Crack目录下的 <em><strong>parallel_studio.lic</strong></em> po解补丁，<strong>Next</strong>。<br><img src="/image/ab_vs_f/f3.png"></li>
+</ul>
+<br>
+
+<ul>
+<li><strong>No, …</strong>, <strong>Next</strong>, 到了选择安装路径步骤，点击<strong>Customize</strong>。<br><img src="/image/ab_vs_f/f4.png"></li>
+</ul>
+<br>
+
+<ul>
+<li>可以选择不勾选<strong>IA-32</strong>,<strong>Next</strong>，<strong>Next</strong><br><img src="/image/ab_vs_f/f5.png"></li>
+</ul>
+<br>
+
+<ul>
+<li><strong>Next</strong>, <strong>Browse</strong>选择安装路径，<strong>Next</strong> 接着这时有一步没截到图，点击<strong>install</strong>就行<br><img src="/image/ab_vs_f/f6.png"></li>
+</ul>
+<br>
+
+<ul>
+<li>等待安装完成，点击<strong>Finish</strong><br><img src="/image/ab_vs_f/f7.png"></li>
+</ul>
+<br>
+
+<br>
+
+<blockquote>
+<p>这时 <em><strong>Fortran</strong></em> 的安装就已经完成。</p>
+</blockquote>
+<br>
+<br>
+
+<h1 id="关联配置"><a href="#关联配置" class="headerlink" title="关联配置"></a>关联配置</h1><ul>
+<li>桌面新建一个 <strong>vsfor.bat</strong> 批处理文件，右键编辑，写入如图所示内容。（其中<strong>call</strong>和<strong>pause</strong>需要手动敲，其它如下介绍），保存关闭。<br><img src="/image/ab_vs_f/19.jpg"></li>
+</ul>
+<br>
+
+<ul>
+<li>其中第一行内容执行的操作为：电脑搜索栏搜索<strong>VS</strong>找到VS2015 x64 x86 兼容工具命令提示符，打开文件所在位置，右键属性，将其目标路径复制下来，粘贴到手敲的的<strong>call</strong>后面</li>
+</ul>
+<p><img src="/image/ab_vs_f/f8.png"></p>
+<br>
+
+<ul>
+<li>第二行内容执行操作为：开始键找到<strong>Intel Parallel Studio XE 2016</strong>，打开 <strong>Compiler 16.0 Update..</strong> 文件所在位置，右键属性，将其目标路径复制下来，粘贴到手敲的的 <strong>call</strong> 后面</li>
+</ul>
+<p><img src="/image/ab_vs_f/f9.png"></p>
+<br>
+
+<ul>
+<li>接着找到<strong>abaqus2020</strong>的文件夹路径(具体路径如图所示)下的<strong>launcher.bat</strong>批处理文件，右键编辑，将刚刚的<strong>vsfor.bat</strong>里面的第一第二行最后的安装路径复制，粘贴到<strong>call</strong>后面，具体内容如下图所示。保存关闭。</li>
+</ul>
+<p><img src="/image/ab_vs_f/f10.png"></p>
+<br>
+
+<ul>
+<li>右键管理员身份运行<strong>vsfor.bat</strong>文件。</li>
+</ul>
+<p><img src="/image/ab_vs_f/f11.png"></p>
+<br>
+
+<ul>
+<li>打开<strong>Abaqus Verification</strong>检测是否成功关联。<br><img src="/image/ab_vs_f/24.jpg"></li>
+</ul>
+<br>
+
+<ul>
+<li>打开<strong>abaqus</strong>的工作目录（temp文件夹）下的verify.log，查看两个 <strong>user subroutines</strong>是否都<strong>PASS</strong>，<strong>PASS</strong>就表明成功了。<br><img src="/image/ab_vs_f/f12.png"></li>
+</ul>
+<br>
+<br>
+
+<blockquote>
+<p>这样 <em><strong>Abaqus2020</strong></em> + <em><strong>VS2015</strong></em> + <em><strong>Fortran2016</strong></em> 关联配置就完成了。可以打开 <strong>abaqus2020</strong> 运行一个简单的vumat子程序进行验证。</p>
+</blockquote>
+
+        </div>
+        <div id=""></div>
     </div>
 </div>
-	<div class="main">
-		
-			<div class="post-block" id="content">
-				
-					<a href="/2023/09/19/ab-vs-ivf/" class="post-block-content">
-						
-							<img src="image/ab_vs_f/2yojr9.jpg" alt="Quiet">
-						
-						<div class="post-block-content-info">
-							<h2>Abaqus2020+VS2015+Fortran2016关联配置</h2>
-							<span class="post-block-content-info-excerpt">
-								
-							</span>
-							<div class="post-block-content-info-exhibition">
-								<div class="post-block-content-info-exhibition-tags">
-									<span class="post-tag">
-										小w
-									</span>
-									<span class="post-tag">
-										2023-09-19
-									</span>
-								</div>
-								<div class="meat-type"></div>
-							</div>
-						</div>
-					</a>
-				
-					<a href="/2023/07/19/docker/" class="post-block-content">
-						
-							<img src="image/Docker/Sea Of Dreams.png" alt="Quiet">
-						
-						<div class="post-block-content-info">
-							<h2>Docker简介及安装教程</h2>
-							<span class="post-block-content-info-excerpt">
-								
-							</span>
-							<div class="post-block-content-info-exhibition">
-								<div class="post-block-content-info-exhibition-tags">
-									<span class="post-tag">
-										小w
-									</span>
-									<span class="post-tag">
-										2023-07-19
-									</span>
-								</div>
-								<div class="meat-type"></div>
-							</div>
-						</div>
-					</a>
-				
-					<a href="/2023/06/19/Transforms/" class="post-block-content">
-						
-							<img src="image/Transforms/bk_image1.png" alt="Quiet">
-						
-						<div class="post-block-content-info">
-							<h2>关于 Transforms.Compose 的小问题</h2>
-							<span class="post-block-content-info-excerpt">
-								
-							</span>
-							<div class="post-block-content-info-exhibition">
-								<div class="post-block-content-info-exhibition-tags">
-									<span class="post-tag">
-										小w
-									</span>
-									<span class="post-tag">
-										2023-06-19
-									</span>
-								</div>
-								<div class="meat-type"></div>
-							</div>
-						</div>
-					</a>
-				
-					<a href="/2023/05/19/Titanic/" class="post-block-content">
-						
-							<img src="image/Titanic/mountains.jpg" alt="Quiet">
-						
-						<div class="post-block-content-info">
-							<h2>Titanic - Machine Learning from Disaster</h2>
-							<span class="post-block-content-info-excerpt">
-								
-							</span>
-							<div class="post-block-content-info-exhibition">
-								<div class="post-block-content-info-exhibition-tags">
-									<span class="post-tag">
-										小w
-									</span>
-									<span class="post-tag">
-										2023-05-19
-									</span>
-								</div>
-								<div class="meat-type"></div>
-							</div>
-						</div>
-					</a>
-				
-			</div>
-		
-		
-	
-	</div>
-	<div class="change-page">
-		
-				
-	</div>
-	
-</div>
+
 		
 <div class="footer">
 	<div class="Copyright">
@@ -443,7 +437,7 @@
             distractionFreeMode:false
         })
         
-        if(Boolean('')){
+        if(Boolean('false')){
             gitalk.render('gitalk-container')
         }
     </script>
